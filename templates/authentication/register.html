@@ -9,7 +9,9 @@
                     <div class="card-title d-flex justify-content-center mt-2">
                         <h4>Register</h4>
                     </div>
-                    <form action="" method="post">
+                    <form action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        {% include "partials/messages.html" %}
                         <div class="form-group">
                             <input type="text" name="username" placeholder="Username" id="usernameField" class="form-control form-control-sm mb-3"/>
                         </div>
