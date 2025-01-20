@@ -49,7 +49,7 @@ usernameField.addEventListener("keyup", (e) => {
 });
 
 emailField.addEventListener("keyup", (e) => {
-     const emailVal = e.target.value;
+    const emailVal = e.target.value;
 
     emailField.classList.remove("is-invalid");
     EmailFeedBackArea.style.display = "none";
