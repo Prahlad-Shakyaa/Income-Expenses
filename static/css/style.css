@@ -1,49 +1,12 @@
+/* General Reset */
 body {
     margin: 0;
-    display: flex;
-}
-.sidebar {
-    width: 250px;
-    background-color: #343a40;
-    color: white;
-    height: 100vh;
-    padding-top: 20px;
-}
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: block;
-}
-.sidebar a:hover {
-    background-color: #495057;
-}
-.sidebar .section-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #adb5bd;
-    padding: 10px 20px;
-}
-.content {
-    flex: 1;
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-}
-.navbar {
-    background-color: #343a40;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.navbar input {
-    background-color: #495057;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
+    height: 100vh;
+  }
+
 
 
 .showPasswordToggle{

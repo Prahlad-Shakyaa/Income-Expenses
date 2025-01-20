@@ -13,6 +13,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import account_activation_token
 
+from django.contrib import auth
+
 class UsernameValidationView(View):
     def post(self, request):
         data = json.loads(request.body)
@@ -97,3 +99,25 @@ class VerificationView(View):
 class LoginView(View):
     def get(self,request):
         return render(request,'authentication/login.html')
+    
+    def post(self,request):
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if username and password:
+            user = auth.authenticate(username=username, password=password)
+
+            if user:
+                if user.is_active:
+                    auth.login(request,user)
+                    messages.success(request,'Welcome, ' + user.username + 'you are now logged in')
+                    return redirect('add-expenses')
+
+                messages.error(request,'Account is not active, Please check your email to activate your account')
+                return render(request, 'authentication/login.html')
+                
+            messages.error(request,'Invalid credentials, Please try again')
+            return render(request, 'authentication/login.html')
+        
+        messages.error(request,'Please fill all the fields')
+        return render(request, 'authentication/login.html')
