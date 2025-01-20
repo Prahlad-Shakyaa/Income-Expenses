@@ -2,15 +2,22 @@
 {% block content %}
     {% include "partials/messages.html" %}
     <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
-            </ol>
-        </nav>
+       <div class="row">
+            <div class="col-md-10">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Expenses</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'delete-expenses' expense.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </div>
 
         <div class="card">
-            <form action="{% url 'add-expenses' %}" method="post">
+            <form action="{% url 'edit-expenses' expense.id %}" method="post">
                 {% csrf_token %}
                 {% include "partials/messages.html" %}
                 <div class="card-body">
@@ -25,6 +32,7 @@
                     <div class="form-group">
                         <label for="">Category</label>
                         <select name="category" class="form-control my-2">
+                            <option selected name="category" value="{{values.category}}">{{values.category}}</option>
                             {% for category in categories %}
                                 <option name="category" value="{{category.name}}">{{category.name}}</option>
                             {% endfor %}
@@ -35,7 +43,7 @@
                         <input type="date" class="form-control form-control-sm my-2" name="date" value="{{values.date}}">
                     </div>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-primary ms-3">
+                <input type="submit" value="Save" class="btn btn-primary ms-3">
             </form>
         </div>
     </div>
