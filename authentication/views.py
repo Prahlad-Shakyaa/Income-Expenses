@@ -129,3 +129,33 @@ class LogoutView(View):
         messages.success(request,'you have been logged out')
         return redirect('login')
     
+    
+# class RequestPasswordResetEmail(View):
+#     def get(self, request):
+#         return render(request,'authentication/reset-password.html')
+    
+#     def post(self, request):
+#         email = request.POST['email']
+#         context = {
+#             'values': request.POST
+#         }
+#         if not validate_email(email):
+#             messages.error(request, 'Please provide a proper email used to register the account ')
+#             return render(request,'authentication/reset-password.html')
+        
+#         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+#         domain = get_current_site(request).domain
+#         link = reverse('activate',kwargs={'uidb64': uidb64, 'token': account_activation_token.make_token(user)})
+#         activate_url = 'http://' + domain + link
+
+#         email_subject = 'activate your account'
+#         email_body = 'Hi' + user.username + 'Please click on the link to activate your account \n' + activate_url
+#         email = EmailMessage(
+#             email_subject,
+#             email_body,
+#             'noreply@semycolon.com',
+#         [email]
+#         )
+#         email.send(fail_silently=False)
+#         return render(request,'authentication/reset-password.html')
+        
